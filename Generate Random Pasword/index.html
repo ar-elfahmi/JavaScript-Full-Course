@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate random pasword</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p>Hallo pilihlah opsi untuk membuat pasword secara acak di bawah ini:</p>
+    <label for="length">Panjang Pasword:</label>
+    <input type="number" id="length"><br>
+    <input type="radio" id="hBesar"> 
+    <label for="hBesar">Huruf Besar</label><br>
+    <input type="radio" id="hKecil">
+    <label for="hKecil">Huruf Kecil</label><br>
+    <input type="radio" id="anggka">
+    <label for="anggka">Anggka</label><br>
+    <input type="radio" id="simbol">
+    <label for="simbol">Simbol</label><br>
+    <button type="submit" onclick="generate()">Generate</button>
+
+    <h1 id="paswordGenerate"></h1>
+    <script src="index.js"></script>
+</body>
+</html>
