@@ -1,0 +1,64 @@
+    
+    try {
+        // Fetch = cara JavaScript "memanggil" API (seperti HTTP Client)
+        console.log('=== LANGKAH 2: Mengirim Request ===');
+        const response = await fetch(API_URL);
+        
+        // "Dump Die" 1: Lihat response mentah
+        console.log('Response mentah:', response);
+        console.log('Status:', response.status);
+        console.log('OK?', response.ok);
+        
+        // ============================================================
+        // FUNGSI 2: Konversi ke JSON (Parsing Data)
+        // ============================================================
+        
+        console.log('=== LANGKAH 3: Parsing JSON ===');
+        const data = await response.json();
+        
+        // "Dump Die" 2: Lihat data yang sudah jadi Object JavaScript
+        console.log('Data JSON (Object):', data);
+        console.log('Tipe data:', typeof data);
+        
+        // ============================================================
+        // FUNGSI 3: Tampilkan di Debug Box (Raw Data)
+        // ============================================================
+        
+        // JSON.stringify untuk tampilkan format JSON yang rapi (indent 2)
+        rawData.textContent = JSON.stringify(data, null, 2);
+        
+        // ============================================================
+        // FUNGSI 4: Ekstrak Data Spesifik (Seperti Eloquent)
+        // ============================================================
+        
+        console.log('=== LANGKAH 4: Ekstrak Data ===');
+        
+        // Ambil property seperti mengakses kolom di Laravel
+        const content = data.content;      // seperti $data->content
+        const author = data.author;        // seperti $data->author
+        const tags = data.tags;            // array
+        
+        // "Dump Die" 3: Lihat masing-masing variabel
+        console.log('Content:', content);
+        console.log('Author:', author);
+        console.log('Tags:', tags);
+        
+        // ============================================================
+        // FUNGSI 5: Tampilkan ke HTML (Render ke View)
+        // ============================================================
+        
+        console.log('=== LANGKAH 5: Update DOM ===');
+        
+        // Update teks di HTML (seperti return view dengan data)
+        quoteText.textContent = `"${content}"`;
+        quoteAuthor.textContent = `- ${author}`;
+        
+        console.log('✅ Berhasil! Data ditampilkan.');
+        
+    } catch (error) {
+        // Error handling (seperti try-catch di PHP)
+        console.error('❌ ERROR:', error);
+        quoteText.textContent = 'Gagal mengambil data. Coba lagi!';
+        quoteAuthor.textContent = '- System';
+        rawData.textContent = `Error: ${error.message}`;
+    }
